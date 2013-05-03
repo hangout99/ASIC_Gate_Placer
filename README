@@ -1,0 +1,17 @@
+Kevin Langer
+Just-For-Fun EDA programming 
+April 2013
+
+Features: 
+Netlist to grid placement.
+Half perimeter route estimation. 
+True random numbers used. (Intel Ivy Bridge only)
+Quick route length recalculation. 
+Timeout, on stable values.
+Visual ouput.
+
+TODO List:
+Better than half perimeter route estimation. 
+Non-greedy algorithm, as to avoid getting stuck in vallies.
+True net support (instead of current linked gates netlist).
+Port support. 
