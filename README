@@ -2,6 +2,9 @@ Kevin Langer
 Just-For-Fun EDA programming 
 April 2013
 
+Run:
+make; ./Placer < test
+
 Features: 
 Netlist to grid placement.
 Half perimeter route estimation. 
