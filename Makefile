@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-g -O0 -Wall -std=gnu99  -fgnu89-inline
+CFLAGS=-g -O3 -march=corei7-avx -Wall -std=gnu99  -fgnu89-inline
 TARGET=Placer 
 
 INC = -I ./inc

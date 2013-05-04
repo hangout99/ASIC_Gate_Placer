@@ -19,7 +19,7 @@ int swap(grid_t* grid, int x1, int y1, int x2, int y2) {
    }
    return PASS;
 }
-int grid_partialLen(grid_t* grid, gate_t* gates, int x1, int y1, int x2, int y2) {
+inline int grid_partialLen(grid_t* grid, gate_t* gates, int x1, int y1, int x2, int y2) {
    int len = 0;
    if (grid[x1+XLEN*y1]) {
       len += grid_routeLen(gates,grid[x1+XLEN*y1]->gateNum);
@@ -70,9 +70,15 @@ static int halfPerimiterWireLength(gate_t* gateList, int gate) {
 
 int grid_init(grid_t** grid, gate_t** gates) {
    char * buffer = malloc(BUFFER_SIZE);
+   char * tok;
    *grid = calloc(XLEN*YLEN,sizeof(grid_t));
-   *gates = calloc(GATE_COUNT,sizeof(gate_t));
+   //*gates = calloc(GATE_COUNT,sizeof(gate_t));
    if ( fgets(buffer,BUFFER_SIZE,stdin) ) {
+      tok = strtok( buffer, (const char*) " " );
+      GATE_COUNT = atoi(tok)+3;
+      printf("Gates: %d\n",GATE_COUNT);
+      *gates = calloc(GATE_COUNT,sizeof(gate_t));
+      tok = strtok( NULL, (const char*) " " );
    }
    free(buffer);
    if (!grid || !gates) {
@@ -98,9 +104,9 @@ int grid_fill(grid_t* grid, gate_t* gates) {
          pointerBuf = malloc(sizeof(int)*atoi(tok));
          gates[curGateNum].gateNum = curGateNum;
          do {
-            rdrand(&xPlace,XLEN);
+            rand_rdrand(&xPlace,XLEN);
             gates[curGateNum].col = xPlace;
-            rdrand(&yPlace,YLEN);
+            rand_rdrand(&yPlace,YLEN);
             gates[curGateNum].row = yPlace;
          } while ( grid[xPlace + XLEN*yPlace] );
          grid[xPlace + XLEN*yPlace] = gates+curGateNum;

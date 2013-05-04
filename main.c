@@ -6,6 +6,7 @@ int main()
    gate_t* gates = NULL;
    grid_t* grid = NULL;
    grid_init(&grid,&gates); 
+   rand_init();
    grid_fill(grid,gates); 
 
    int totalLen = 0;
@@ -19,10 +20,10 @@ int main()
    grid_dumpGrid(grid);
    printf("Manhattan distance: %d\n",totalLen);
    while (1) {
-      rdrand(&x1,XLEN);
-      rdrand(&x2,XLEN);
-      rdrand(&y1,YLEN);
-      rdrand(&y2,YLEN);
+      rand_rdrand(&x1,XLEN);
+      rand_rdrand(&x2,XLEN);
+      rand_rdrand(&y1,YLEN);
+      rand_rdrand(&y2,YLEN);
       befLen = grid_partialLen(grid, gates, x1, y1, x2, y2);
       swap(grid, x1, y1, x2, y2);
       aftLen = grid_partialLen(grid, gates, x1, y1, x2, y2);

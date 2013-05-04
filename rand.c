@@ -6,7 +6,10 @@ https://idea.popcount.org/2013-03-25-hardware-entropy-rdrand/
 
 #include "rand.h"
 
-inline int rdrand(int *v, int range) {
+int rand_init() {
+   return PASS;
+}
+inline int rand_rdrand(int *v, int range) {
    int ok;
     asm volatile("1: " RDRAND_LONG "\n\t"
              "jc 2f\n\t"
@@ -18,3 +21,5 @@ inline int rdrand(int *v, int range) {
    *v = (((unsigned int)*v>>16)*range)>>16;  
    return ok;
 }
+
+
